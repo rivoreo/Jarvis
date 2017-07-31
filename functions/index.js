@@ -50,6 +50,32 @@ const jarvis = functions.https.onRequest((request, response) => {
     app.handleRequest(actionMap);
 });
 
+var webRequest = require('request');
+
+const get_aqi = functions.https.onRequest((request, response) => {
+
+    webRequest.get("https://api.waqi.info/feed/shanghai/?token=b61be407271b9003881f67ae5ff04739ad6b469b",
+        function(error, res, body) {
+            if (!error && res.statusCode === 200) {
+                var info = JSON.parse(body);
+                if (info.status === "ok") {
+                    var data = {};
+                    data[aqi] = info.data.aqi;
+                    console.log(`Get Aqi: ${JSON.stringify(data)}`);
+                    response.send(JSON.stringify(data));
+                }
+                console.log(body);
+            } else {
+                console.log(`request error: ${res.statusCode}`);
+            }
+        });
+
+    console.log(`Request headers: ${JSON.stringify(request.headers)}`);
+    console.log(`Request body: ${JSON.stringify(request.body)}`);
+});
+
+
 module.exports = {
-    jarvis
+    jarvis,
+    get_aqi
 };
