@@ -9,6 +9,11 @@
   "author": "JohnnySun",
   "license": "MIT",
   "dependencies": {
-    "actions-on-google": "^1.2.0"
+    "actions-on-google": "^1.2.0",
+    "firebase-admin": "^5.0.1",
+    "firebase-functions": "^0.5.9",
+    "request": "^2.81.0",
+    "sprintf": "^0.1.5",
+    "sprintf-js": "^1.1.1"
   }
 }
