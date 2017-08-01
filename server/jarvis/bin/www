@@ -10,7 +10,7 @@ var fs = require('fs');
 var http = require('http');
 var https = require('https');
 
-var privateKey  = fs.readFileSync('/root/letsencrypt/lets-encrypt-x3-cross-signed.pem', 'utf8');
+var privateKey  = fs.readFileSync('/root/letsencrypt/lets-encrypt-x3-cross-signed.pemls.pem', 'utf8');
 var certificate = fs.readFileSync('/root/letsencrypt/johnny.crt', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 
@@ -42,7 +42,7 @@ server.on('listening', onListening);
 
 httpsServer.listen(sslport);
 httpsServer.on('error', onError);
-httpsServer.on('listening', onListening());
+httpsServer.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
