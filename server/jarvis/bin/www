@@ -6,7 +6,13 @@
 
 var app = require('../app');
 var debug = require('debug')('jarvis:server');
+var fs = require('fs');
 var http = require('http');
+var https = require('https');
+
+var privateKey  = fs.readFileSync('/root/letsencrypt/lets-encrypt-x3-cross-signed.pem', 'utf8');
+var certificate = fs.readFileSync('/root/letsencrypt/johnny.crt', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
 
 /**
  * Get port from environment and store in Express.
@@ -15,11 +21,16 @@ var http = require('http');
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+var sslport = normalizePort(process.env.PORT || '3001');
+app.set('port', sslport);
+
 /**
- * Create HTTP server.
+ * Create HTTP/S server.
  */
 
 var server = http.createServer(app);
+
+var httpsServer = https.createServer(credentials, app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -28,6 +39,10 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+httpsServer.listen(sslport);
+httpsServer.on('error', onError);
+httpsServer.on('listening', onListening());
 
 /**
  * Normalize a port into a number, string, or false.
