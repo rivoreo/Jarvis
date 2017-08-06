@@ -47,6 +47,9 @@ function post(req, res, next) {
     console.log(`Request headers: ${JSON.stringify(req.headers)}`);
     console.log(`Request body: ${JSON.stringify(req.body)}`);
     app.handleRequest(actionMap);
+    console.log(`test log`);
+    res.status(200);
+    res.send("test");
 }
 
 module.exports = {
