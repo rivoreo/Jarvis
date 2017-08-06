@@ -10,8 +10,8 @@ var fs = require('fs');
 var http = require('http');
 var https = require('https');
 
-var privateKey  = fs.readFileSync('/root/letsencrypt/lets-encrypt-x3-cross-signed.pemls.pem', 'utf8');
-var certificate = fs.readFileSync('/root/letsencrypt/johnny.crt', 'utf8');
+var privateKey  = fs.readFileSync('/etc/dehydrated/certs/tokyo.johnny.moe/privkey.pem', 'utf8');
+var certificate = fs.readFileSync('/etc/dehydrated/certs/tokyo.johnny.moe/cert.csr', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 
 /**
