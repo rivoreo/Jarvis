@@ -12,7 +12,7 @@ var https = require('https');
 
 const certs_path = '/etc/dehydrated/certs/tokyo.johnny.moe';
 var privateKey  = fs.readFileSync(certs_path + '/privkey.pem', 'utf8');
-var certificate = fs.readFileSync(certs_path + '/cert.csr', 'utf8');
+var certificate = fs.readFileSync(certs_path + '/cert.pem', 'utf8');
 var ca = fs.readFileSync(certs_path + '/fullchain.pem');
 var credentials = {key: privateKey, cert: certificate, ca: ca};
 
