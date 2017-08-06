@@ -16,6 +16,8 @@ var certificate = fs.readFileSync(certs_path + '/cert.pem', 'utf8');
 var ca = fs.readFileSync(certs_path + '/fullchain.pem');
 var credentials = {key: privateKey, cert: certificate, ca: ca};
 
+require("debug").enable('actions-on-google:*');
+
 /**
  * Get port from environment and store in Express.
  */

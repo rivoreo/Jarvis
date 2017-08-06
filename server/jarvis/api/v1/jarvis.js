@@ -43,13 +43,15 @@ actionMap.set(Actions.INPUT_WELCOME_LINK, inputWelcomeLinks);
 
 
 function post(req, res, next) {
-    const app = new ApiAiApp({ req, res });
+    const app = new ApiAiApp({ request:req, response:res });
     console.log(`Request headers: ${JSON.stringify(req.headers)}`);
     console.log(`Request body: ${JSON.stringify(req.body)}`);
-    app.handleRequest(actionMap);
-    console.log(`test log`);
-    res.status(200);
-    res.send("test");
+    try {
+        app.handleRequest(actionMap);
+    } catch(e) {
+        console.error(e);
+        process.exit(1);
+    }
 }
 
 module.exports = {
