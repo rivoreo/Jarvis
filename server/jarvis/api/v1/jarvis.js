@@ -25,8 +25,8 @@ const unhandledDeepLinks = app => {
 
 const inputCommandLinks = app => {
     const rawInput = app.getRawInput();
-    const response = sprintf("Jarvis is very early version and cant response this question right now.");
-    console.log(`Jarvis response: ${response}`);
+    //const response = sprintf("Jarvis is very early version and cant response this question right now.");
+    const response = sprintf(`Jarvis response: ${response}`);
     app.ask(response);
 };
 
